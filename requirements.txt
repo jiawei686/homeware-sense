@@ -1,0 +1,6 @@
+# Homeware Sense dependencies
+# Note: Optional dependencies for specific hardware platforms
+# pip install HAP-python for HomeKit support
+# pip install python-miio for Mi Home support
+# pip install paho-mqtt for MQTT support
+flask>=2.0.0
