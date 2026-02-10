@@ -1,4 +1,4 @@
-# Homeware Sense - OpenClaw技能
+# Homeware Sense - OpenClaw Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue)](https://github.com/openclaw/openclaw)
@@ -9,41 +9,41 @@
   <img src="https://placehold.co/800x200/4a6cf7/ffffff?text=Homeware+Sense+-+Unified+Home+Automation" alt="Homeware Sense Banner">
 </p>
 
-> 🏠 统一的环境感知和智能家居集成框架 - 让AI助手感知物理世界
+> 🏠 Unified environmental sensing and smart home integration framework - enabling AI assistants to perceive the physical world
 
-Homeware Sense是一个统一的环境感知技能，允许OpenClaw AI助手感知和响应物理环境的变化。该技能支持多种智能家居平台，包括HomeKit、Mi Home、MQTT、GPIO和模拟器。
+Homeware Sense is a unified environmental sensing skill that allows the OpenClaw AI assistant to perceive and respond to physical environment changes. This skill supports multiple smart home platforms including HomeKit, Mi Home, MQTT, GPIO, and simulators.
 
-## ✨ 核心特性
+## ✨ Core Features
 
-### 🌍 多平台统一支持
-- **Apple HomeKit**: 原生支持HomeKit兼容设备
-- **小米米家**: 集成小米生态链设备
-- **MQTT协议**: 支持通用MQTT传感器
-- **GPIO接口**: 支持树莓派GPIO传感器
-- **智能模拟**: 无需硬件即可开发测试
+### 🌍 Multi-Platform Unified Support
+- **Apple HomeKit**: Native support for HomeKit compatible devices
+- **Xiaomi Mi Home**: Integration with Xiaomi ecosystem devices
+- **MQTT Protocol**: Support for generic MQTT sensors
+- **GPIO Interface**: Support for Raspberry Pi GPIO sensors
+- **Smart Simulation**: Develop and test without hardware
 
-### ⚡ 简化集成
-- **统一API**: 所有平台使用相同的调用接口
-- **自动发现**: 自动检测可用的硬件平台
-- **故障回退**: 硬件不可用时自动切换到模拟器
-- **最少代码**: 仅需几行代码完成平台集成
+### ⚡ Simplified Integration
+- **Unified API**: Same interface for all platforms
+- **Auto Discovery**: Automatically detect available hardware platforms
+- **Fallback**: Automatically switch to simulator when hardware is unavailable
+- **Minimal Code**: Integrate platforms with just a few lines of code
 
-### 🛡️ 智能监控
-- **实时监测**: 温度、湿度、光照、声音、运动、空气质量
-- **智能警报**: 超出阈值时自动通知
-- **数据聚合**: 综合多传感器数据进行分析
+### 🛡️ Smart Monitoring
+- **Real-time Monitoring**: Temperature, humidity, light, sound, motion, air quality
+- **Smart Alerts**: Automatic notifications when thresholds are exceeded
+- **Data Aggregation**: Analyze data from multiple sensors
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 安装
+### Installation
 
-#### 方法1: Git Clone
+#### Method 1: Git Clone
 ```bash
 cd ~/.openclaw/skills/
 git clone https://github.com/jiawei686/homeware-sense-skill.git
 ```
 
-#### 方法2: 直接下载
+#### Method 2: Direct Download
 ```bash
 cd ~/.openclaw/skills/
 curl -L https://github.com/jiawei686/homeware-sense-skill/archive/main.zip -o homeware-sense-skill.zip
@@ -51,34 +51,34 @@ unzip homeware-sense-skill.zip
 mv homeware-sense-skill-main homeware-sense-skill
 ```
 
-### 基础使用
+### Basic Usage
 
-#### 简化接口（推荐）
+#### Simplified Interface (Recommended)
 ```python
 from homeware_sense_skill import HomewareSenseSkill
 
-# 自动连接所有可用平台
+# Auto-connect to all available platforms
 skill = HomewareSenseSkill.quick_connect('auto')
 data = skill.get_environment_data()
 print(data)
 ```
 
-#### 指定平台连接
+#### Specified Platform Connection
 ```python
 from homeware_sense_skill import HomewareSenseSkill
 
-# 连接特定平台
+# Connect to specific platform
 skill = HomewareSenseSkill.quick_connect('homekit')  # HomeKit
 skill = HomewareSenseSkill.quick_connect('mihome')   # Mi Home
 skill = HomewareSenseSkill.quick_connect('mqtt')     # MQTT
 skill = HomewareSenseSkill.quick_connect('gpio')     # GPIO
 ```
 
-#### 高级配置
+#### Advanced Configuration
 ```python
 from homeware_sense_skill import HomewareSenseSkill
 
-# 自定义配置
+# Custom configuration
 config = {
     'debug': True,
     'sensors_enabled': {
@@ -89,7 +89,7 @@ config = {
     'hardware_config': {
         'temperature': {
             'enabled': True,
-            'type': 'homekit',  # 或 'mihome', 'mqtt', 'gpio', 'mock'
+            'type': 'homekit',  # or 'mihome', 'mqtt', 'gpio', 'mock'
             'accessory_id': 'com.example.sensor',
             'pin_code': '123-45-678',
             'sensor_type': 'temperature',
@@ -102,27 +102,27 @@ skill = HomewareSenseSkill(config)
 data = skill.get_environment_data()
 ```
 
-## 📋 支持的传感器类型
+## 📋 Supported Sensor Types
 
-| 传感器类型 | 描述 | 单位 |
-|-----------|------|------|
-| temperature | 温度 | °C |
-| humidity | 湿度 | % |
-| light | 光照强度 | lux |
-| sound | 声音等级 | dB |
-| motion | 运动检测 | boolean |
-| air_quality | 空气质量 | AQI |
+| Sensor Type | Description | Unit |
+|------------|-------------|------|
+| temperature | Temperature | °C |
+| humidity | Humidity | % |
+| light | Light intensity | lux |
+| sound | Sound level | dB |
+| motion | Motion detection | boolean |
+| air_quality | Air quality | AQI |
 
-## 📚 API参考
+## 📚 API Reference
 
-### 主要方法
+### Main Methods
 
 #### `get_environment_data()`
-获取当前环境数据
+Get current environment data
 
 ```python
 result = skill.get_environment_data()
-# 返回: {
+# Returns: {
 #   'success': bool,
 #   'data': {...},
 #   'error': str | None,
@@ -131,7 +131,7 @@ result = skill.get_environment_data()
 ```
 
 #### `set_thresholds(thresholds)`
-设置传感器阈值
+Set sensor thresholds
 
 ```python
 thresholds = {
@@ -142,30 +142,30 @@ result = skill.set_thresholds(thresholds)
 ```
 
 #### `get_platform_status()`
-获取平台连接状态
+Get platform connection status
 
 ```python
 status = skill.get_platform_status()
 ```
 
 #### `quick_connect(platform)`
-快速连接指定平台
+Quickly connect to specified platform
 
 ```python
 skill = HomewareSenseSkill.quick_connect('auto')
 ```
 
-## 🔧 配置选项
+## 🔧 Configuration Options
 
-### 全局配置
-- `debug`: 启用调试模式
-- `sensors_enabled`: 控制启用的传感器类型
-- `polling_interval`: 数据轮询间隔（秒）
-- `data_retention_days`: 数据保留天数
+### Global Configuration
+- `debug`: Enable debug mode
+- `sensors_enabled`: Control enabled sensor types
+- `polling_interval`: Data polling interval (seconds)
+- `data_retention_days`: Data retention days
 
-### 硬件配置示例
+### Hardware Configuration Examples
 
-#### HomeKit配置
+#### HomeKit Configuration
 ```json
 {
   "hardware_config": {
@@ -181,7 +181,7 @@ skill = HomewareSenseSkill.quick_connect('auto')
 }
 ```
 
-#### Mi Home配置
+#### Mi Home Configuration
 ```json
 {
   "hardware_config": {
@@ -197,7 +197,7 @@ skill = HomewareSenseSkill.quick_connect('auto')
 }
 ```
 
-#### MQTT配置
+#### MQTT Configuration
 ```json
 {
   "hardware_config": {
@@ -213,27 +213,27 @@ skill = HomewareSenseSkill.quick_connect('auto')
 }
 ```
 
-## 🛠️ 可选依赖
+## 🛠️ Optional Dependencies
 
-根据使用的硬件平台，可能需要安装额外依赖：
+Depending on the hardware platform used, additional dependencies may be required:
 
 ```bash
-# HomeKit支持
+# HomeKit Support
 pip install HAP-python
 
-# Mi Home支持
+# Mi Home Support
 pip install python-miio
 
-# MQTT支持
+# MQTT Support
 pip install paho-mqtt
 
-# Flask用于API接口（可选）
+# Flask for API interface (optional)
 pip install flask
 ```
 
-## 📖 使用场景
+## 📖 Usage Scenarios
 
-### 场景1: 智能温控
+### Scenario 1: Smart Temperature Control
 ```python
 from homeware_sense_skill import HomewareSenseSkill
 
@@ -242,12 +242,12 @@ data = skill.get_environment_data()
 
 temp = data['data']['environment_status']['temperature']
 if temp > 26:
-    print("温度过高，建议开启空调")
+    print("Temperature too high, suggest turning on AC")
 elif temp < 18:
-    print("温度过低，建议开启暖气")
+    print("Temperature too low, suggest turning on heater")
 ```
 
-### 场景2: 智能照明
+### Scenario 2: Smart Lighting
 ```python
 from homeware_sense_skill import HomewareSenseSkill
 
@@ -255,11 +255,11 @@ skill = HomewareSenseSkill.quick_connect('auto')
 data = skill.get_environment_data()
 
 light = data['data']['environment_status']['light_level']
-if light < 100:  # 黑暗环境
-    print("建议开启室内照明")
+if light < 100:  # Dark environment
+    print("Suggest turning on indoor lighting")
 ```
 
-### 场景3: 环境警报
+### Scenario 3: Environmental Alerts
 ```python
 from homeware_sense_skill import HomewareSenseSkill
 
@@ -275,41 +275,41 @@ data = skill.get_environment_data()
 alerts = data['data']['alerts']
 if alerts:
     for alert in alerts:
-        print(f"警报: {alert['message']}")
+        print(f"Alert: {alert['message']}")
 ```
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交Issue和Pull Request来改进Homeware Sense技能！
+Issues and Pull Requests are welcome to improve the Homeware Sense skill!
 
-### 开发设置
+### Development Setup
 ```bash
-# 克隆仓库
+# Clone the repository
 git clone https://github.com/jiawei686/homeware-sense-skill.git
 cd homeware-sense-skill
 
-# 创建虚拟环境
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-# 或 venv\Scripts\activate  # Windows
+# or venv\Scripts\activate  # Windows
 
-# 安装开发依赖
+# Install development dependencies
 pip install -e .
 ```
 
-### 运行测试
+### Run Tests
 ```bash
 python -m unittest discover -s ./test_homeware_sense_skill.py
 ```
 
-## 📄 许可证
+## 📄 License
 
-MIT License - 查看 [LICENSE](LICENSE) 文件了解详情
+MIT License - See [LICENSE](LICENSE) file for details
 
-## 🙏 致谢
+## 🙏 Acknowledgments
 
-感谢OpenClaw社区的支持和反馈。
+Thanks to the OpenClaw community for support and feedback.
 
 ---
 
-⭐ 如果这个项目对您有帮助，请给个Star！
+⭐ If this project helps you, please give it a Star!
